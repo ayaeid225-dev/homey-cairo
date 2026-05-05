@@ -1,14 +1,14 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { HomeyLogo } from "@/components/HomeyLogo";
 import { Button } from "@/components/ui/button";
-import { Home, Search, Heart, MessageCircle, User, LogOut } from "lucide-react";
+import { Home, Search, Heart, FileText, LogOut } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 
 const tabs = [
   { to: "/home", label: "Home", icon: Home },
   { to: "/listings", label: "Search", icon: Search },
   { to: "/saved", label: "Saved", icon: Heart },
-  { to: "/contracts", label: "Contracts", icon: MessageCircle },
+  { to: "/contracts", label: "Contracts", icon: FileText },
 ];
 
 export const AppShell = ({ children }: { children: React.ReactNode }) => {
@@ -36,7 +36,7 @@ export const AppShell = ({ children }: { children: React.ReactNode }) => {
             })}
           </nav>
           <div className="flex items-center gap-2">
-            <span className="text-xs text-muted-foreground hidden sm:inline">{user?.email}</span>
+            <span className="text-xs text-muted-foreground hidden lg:inline">{user?.email}</span>
             <Button variant="ghost" size="icon" onClick={async () => { await signOut(); navigate("/login"); }}>
               <LogOut className="h-4 w-4" />
             </Button>
@@ -46,7 +46,6 @@ export const AppShell = ({ children }: { children: React.ReactNode }) => {
 
       <main className="max-w-7xl mx-auto px-4 py-6">{children}</main>
 
-      {/* Mobile bottom nav */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-card/95 backdrop-blur-lg border-t border-border z-40">
         <div className="flex justify-around py-2">
           {tabs.map((t) => {
