@@ -14,6 +14,184 @@ export type Database = {
   }
   public: {
     Tables: {
+      contract_templates: {
+        Row: {
+          category: string
+          content: string
+          created_at: string
+          description: string | null
+          id: string
+          title: string
+        }
+        Insert: {
+          category: string
+          content: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          title: string
+        }
+        Update: {
+          category?: string
+          content?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          title?: string
+        }
+        Relationships: []
+      }
+      inventory_items: {
+        Row: {
+          condition: string | null
+          created_at: string
+          id: string
+          listing_id: string
+          name: string
+          quantity: number
+        }
+        Insert: {
+          condition?: string | null
+          created_at?: string
+          id?: string
+          listing_id: string
+          name: string
+          quantity?: number
+        }
+        Update: {
+          condition?: string | null
+          created_at?: string
+          id?: string
+          listing_id?: string
+          name?: string
+          quantity?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "inventory_items_listing_id_fkey"
+            columns: ["listing_id"]
+            isOneToOne: false
+            referencedRelation: "listings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      listing_reviews: {
+        Row: {
+          comment: string | null
+          created_at: string
+          id: string
+          listing_id: string
+          rating: number
+          reviewer_id: string
+        }
+        Insert: {
+          comment?: string | null
+          created_at?: string
+          id?: string
+          listing_id: string
+          rating: number
+          reviewer_id: string
+        }
+        Update: {
+          comment?: string | null
+          created_at?: string
+          id?: string
+          listing_id?: string
+          rating?: number
+          reviewer_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "listing_reviews_listing_id_fkey"
+            columns: ["listing_id"]
+            isOneToOne: false
+            referencedRelation: "listings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      listings: {
+        Row: {
+          address: string | null
+          amenities: string[] | null
+          ar_preview_url: string | null
+          area: string
+          bathrooms: number
+          created_at: string
+          description: string | null
+          distance_km: number | null
+          furnished: boolean
+          gender_pref: Database["public"]["Enums"]["gender_preference"]
+          id: string
+          is_featured: boolean
+          landlord_id: string
+          latitude: number | null
+          longitude: number | null
+          photos: string[] | null
+          price: number
+          rooms: number
+          status: Database["public"]["Enums"]["verification_status"]
+          title: string
+          type: Database["public"]["Enums"]["listing_type"]
+          university: string | null
+          updated_at: string
+          virtual_tour_link: string | null
+        }
+        Insert: {
+          address?: string | null
+          amenities?: string[] | null
+          ar_preview_url?: string | null
+          area: string
+          bathrooms?: number
+          created_at?: string
+          description?: string | null
+          distance_km?: number | null
+          furnished?: boolean
+          gender_pref?: Database["public"]["Enums"]["gender_preference"]
+          id?: string
+          is_featured?: boolean
+          landlord_id: string
+          latitude?: number | null
+          longitude?: number | null
+          photos?: string[] | null
+          price: number
+          rooms?: number
+          status?: Database["public"]["Enums"]["verification_status"]
+          title: string
+          type?: Database["public"]["Enums"]["listing_type"]
+          university?: string | null
+          updated_at?: string
+          virtual_tour_link?: string | null
+        }
+        Update: {
+          address?: string | null
+          amenities?: string[] | null
+          ar_preview_url?: string | null
+          area?: string
+          bathrooms?: number
+          created_at?: string
+          description?: string | null
+          distance_km?: number | null
+          furnished?: boolean
+          gender_pref?: Database["public"]["Enums"]["gender_preference"]
+          id?: string
+          is_featured?: boolean
+          landlord_id?: string
+          latitude?: number | null
+          longitude?: number | null
+          photos?: string[] | null
+          price?: number
+          rooms?: number
+          status?: Database["public"]["Enums"]["verification_status"]
+          title?: string
+          type?: Database["public"]["Enums"]["listing_type"]
+          university?: string | null
+          updated_at?: string
+          virtual_tour_link?: string | null
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -46,6 +224,35 @@ export type Database = {
           updated_at?: string
         }
         Relationships: []
+      }
+      saved_listings: {
+        Row: {
+          created_at: string
+          id: string
+          listing_id: string
+          student_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          listing_id: string
+          student_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          listing_id?: string
+          student_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "saved_listings_listing_id_fkey"
+            columns: ["listing_id"]
+            isOneToOne: false
+            referencedRelation: "listings"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       user_roles: {
         Row: {
@@ -83,6 +290,9 @@ export type Database = {
     }
     Enums: {
       app_role: "student" | "landlord" | "service_provider" | "admin"
+      gender_preference: "male" | "female" | "any"
+      listing_type: "apartment" | "room" | "studio" | "shared"
+      verification_status: "pending" | "verified" | "rejected"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -211,6 +421,9 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["student", "landlord", "service_provider", "admin"],
+      gender_preference: ["male", "female", "any"],
+      listing_type: ["apartment", "room", "studio", "shared"],
+      verification_status: ["pending", "verified", "rejected"],
     },
   },
 } as const

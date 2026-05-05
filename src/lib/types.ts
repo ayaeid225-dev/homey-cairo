@@ -1,0 +1,24 @@
+export type Listing = {
+  id: string;
+  landlord_id: string;
+  title: string;
+  description: string | null;
+  type: "apartment" | "room" | "studio" | "shared";
+  price: number;
+  area: string;
+  address: string | null;
+  rooms: number;
+  bathrooms: number;
+  furnished: boolean;
+  amenities: string[];
+  photos: string[];
+  virtual_tour_link: string | null;
+  ar_preview_url: string | null;
+  gender_pref: "male" | "female" | "any";
+  university: string | null;
+  distance_km: number | null;
+  latitude: number | null;
+  longitude: number | null;
+  status: "pending" | "verified" | "rejected";
+  is_featured: boolean;
+};

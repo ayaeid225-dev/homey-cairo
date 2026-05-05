@@ -14,6 +14,10 @@ import VerifyEmail from "./pages/auth/VerifyEmail";
 import PhoneAuth from "./pages/auth/PhoneAuth";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
+import Listings from "./pages/housing/Listings";
+import ListingDetails from "./pages/housing/ListingDetails";
+import Saved from "./pages/housing/Saved";
+import Contracts from "./pages/housing/Contracts";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +38,10 @@ const App = () => (
             <Route path="/verify-email" element={<VerifyEmail />} />
             <Route path="/phone-auth" element={<PhoneAuth />} />
             <Route path="/home" element={<Home />} />
+            <Route path="/listings" element={<Listings />} />
+            <Route path="/listings/:id" element={<ListingDetails />} />
+            <Route path="/saved" element={<Saved />} />
+            <Route path="/contracts" element={<Contracts />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AuthProvider>
