@@ -3,7 +3,7 @@ export type Listing = {
   landlord_id: string;
   title: string;
   description: string | null;
-  type: "apartment" | "room" | "studio" | "shared";
+  type: "apartment" | "room" | "studio" | "shared"|"single";
   price: number;
   area: string;
   address: string | null;
