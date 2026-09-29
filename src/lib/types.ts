@@ -14,7 +14,7 @@ export type Listing = {
   photos: string[];
   virtual_tour_link: string | null;
   ar_preview_url: string | null;
-  gender_pref: "male" | "female" | "any";
+  gender_pref: "male" | "female" | "an";
   university: string | null;
   distance_km: number | null;
   latitude: number | null;
