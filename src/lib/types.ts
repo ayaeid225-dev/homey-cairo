@@ -3,7 +3,7 @@ export type Listing = {
   landlord_id: string;
   title: string;
   description: string | null;
-  type: "apartment" | "room" | "studio" | "shared";
+  type: "apartment" | "room" | "studio" | "shared"|"single";
   price: number;
   area: string;
   address: string | null;
@@ -14,7 +14,7 @@ export type Listing = {
   photos: string[];
   virtual_tour_link: string | null;
   ar_preview_url: string | null;
-  gender_pref: "male" | "female" | "any";
+  gender_pref: "male" | "female" | "prefer not say"| "mix";
   university: string | null;
   distance_km: number | null;
   latitude: number | null;
